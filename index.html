@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gondwana Rates</title>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <h1>Check Gondwana Rates</h1>
+  <form id="ratesForm">
+    <label>Unit Name: <input type="text" id="unitName" required></label><br>
+    <label>Arrival (dd/mm/yyyy): <input type="text" id="arrival" required></label><br>
+    <label>Departure (dd/mm/yyyy): <input type="text" id="departure" required></label><br>
+    <label>Occupants: <input type="number" id="occupants" required></label><br>
+    <label>Ages (comma separated): <input type="text" id="ages" required></label><br>
+    <button type="submit">Get Rates</button>
+  </form>
+  <pre id="output"></pre>
+</body>
+</html>
