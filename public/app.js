@@ -1,5 +1,6 @@
 document.getElementById('ratesForm').addEventListener('submit', async (e) => {
   e.preventDefault();
+  
   const payload = {
     "Unit Name": document.getElementById('unitName').value,
     "Arrival": document.getElementById('arrival').value,
@@ -8,12 +9,20 @@ document.getElementById('ratesForm').addEventListener('submit', async (e) => {
     "Ages": document.getElementById('ages').value.split(',').map(a => parseInt(a.trim()))
   };
 
-  const response = await fetch('/api/rates', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  const output = document.getElementById('output');
+  output.textContent = 'Sending request...';
 
-  const data = await response.json();
-  document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+  try {
+    const response = await fetch('/api/rates', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    output.textContent = JSON.stringify(data, null, 2);
+  } catch (err) {
+    output.textContent = 'Error: ' + err;
+    console.error(err);
+  }
 });
